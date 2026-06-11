@@ -11,8 +11,10 @@ export default function Modal({ children, onClose }: ModalProps) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
     };
 
     window.addEventListener("keydown", handleEsc);
@@ -24,11 +26,15 @@ export default function Modal({ children, onClose }: ModalProps) {
   }, [onClose]);
 
   const modalRoot = document.getElementById("modal-root");
+
   if (!modalRoot) return null;
 
   return createPortal(
     <div className={css.backdrop} onClick={onClose}>
-      <div className={css.modal} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={css.modal}
+        onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+      >
         {children}
       </div>
     </div>,
