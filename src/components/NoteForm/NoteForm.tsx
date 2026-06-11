@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
 
 export default function NoteForm({ onSubmit, onCancel }: NoteFormProps) {
   return (
-    <Formik
+    <Formik<NoteFormValues>
       initialValues={{
         title: "",
         content: "",
