@@ -50,32 +50,42 @@ export default function NoteForm({ onCancel }: { onCancel: () => void }) {
       }}
     >
       <Form className={css.form}>
-        <div>
-          <Field name="title" placeholder="Title" />
-          <ErrorMessage name="title" />
+        <div className={css.formGroup}>
+          <Field name="title" className={css.input} placeholder="Title" />
+          <ErrorMessage name="title" component="span" className={css.error} />
         </div>
 
-        <div>
-          <Field name="content" as="textarea" placeholder="Content" />
-          <ErrorMessage name="content" />
+        <div className={css.formGroup}>
+          <Field
+            name="content"
+            as="textarea"
+            className={css.textarea}
+            placeholder="Content"
+          />
+          <ErrorMessage name="content" component="span" className={css.error} />
         </div>
 
-        <div>
-          <Field name="tag" as="select">
+        <div className={css.formGroup}>
+          <Field name="tag" as="select" className={css.select}>
             <option value="Todo">Todo</option>
             <option value="Work">Work</option>
             <option value="Personal">Personal</option>
             <option value="Meeting">Meeting</option>
             <option value="Shopping">Shopping</option>
           </Field>
-          <ErrorMessage name="tag" />
+
+          <ErrorMessage name="tag" component="span" className={css.error} />
         </div>
 
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
+        <div className={css.actions}>
+          <button type="button" className={css.cancelButton} onClick={onCancel}>
+            Cancel
+          </button>
 
-        <button type="submit">Create note</button>
+          <button type="submit" className={css.submitButton}>
+            Create note
+          </button>
+        </div>
       </Form>
     </Formik>
   );
