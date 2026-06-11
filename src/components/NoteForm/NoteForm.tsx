@@ -12,6 +12,10 @@ interface NoteFormValues {
   tag: NoteTag;
 }
 
+interface NoteFormProps {
+  onCancel: () => void;
+}
+
 const validationSchema = Yup.object({
   title: Yup.string()
     .min(3, "Min 3 characters")
@@ -25,7 +29,7 @@ const validationSchema = Yup.object({
     .required("Required"),
 });
 
-export default function NoteForm({ onCancel }: { onCancel: () => void }) {
+export default function NoteForm({ onCancel }: NoteFormProps) {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
