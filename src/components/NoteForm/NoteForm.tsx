@@ -6,14 +6,14 @@ import css from "./NoteForm.module.css";
 import { createNote } from "../../services/noteService";
 import type { NoteTag } from "../../types/note";
 
+interface NoteFormProps {
+  onCancel: () => void;
+}
+
 interface NoteFormValues {
   title: string;
   content: string;
   tag: NoteTag;
-}
-
-interface NoteFormProps {
-  onCancel: () => void;
 }
 
 const validationSchema = Yup.object({
@@ -29,7 +29,7 @@ const validationSchema = Yup.object({
     .required("Required"),
 });
 
-export default function NoteForm({ onCancel }: NoteFormProps) {
+const NoteForm = ({ onCancel }: NoteFormProps) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -93,4 +93,6 @@ export default function NoteForm({ onCancel }: NoteFormProps) {
       </Form>
     </Formik>
   );
-}
+};
+
+export default NoteForm;
